@@ -14,6 +14,12 @@ interface Character {
   perception: boolean;
 }
 
+type Method = 'highest' | 'above'
+
+interface RequestData {
+  method: Method;
+}
+
 const routes = Router();
 
 const characters: Character[] = [
@@ -44,7 +50,7 @@ const characters: Character[] = [
 ];
 
 routes.get('/perception', (request, response) => {
-  const { method } = request.query;
+  const { method, reference } = request.query;
 
   const passives = characters.map((char) => {
     const bonus = char.wisdom - 10 != 0 ? Math.floor((char.wisdom - 10) / 2) : 0;
@@ -67,6 +73,12 @@ routes.get('/perception', (request, response) => {
     const highers = passives.filter((p) => p.passive === max);
 
     return response.json(highers);
+  }
+
+  if (method === 'above' && reference) {
+    const greaters = passives.filter((passive) => passive.passive >= parseInt(String(reference)));
+
+    return response.json(greaters);
   }
 
   return response.json(passives);
