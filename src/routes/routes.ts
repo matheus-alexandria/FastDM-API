@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 
 /**
  * Party
@@ -49,7 +49,7 @@ const characters: Character[] = [
   },
 ];
 
-routes.get('/perception', (request, response) => {
+routes.get('/perception', (request: Request, response: Response) => {
   const { method, reference } = request.query;
 
   const passives = characters.map((char) => {
@@ -82,6 +82,26 @@ routes.get('/perception', (request, response) => {
   }
 
   return response.json(passives);
+});
+
+// Return all existing characters
+routes.get('/', (request: Request, response: Response) => {
+  return response.json(characters);
+});
+
+
+// Creates a new character
+routes.post('/create', (request: Request, response: Response) => {
+  const { name, wisdom, proficiency, perception } = request.body;
+
+  const lenght = characters.push({
+    name,
+    wisdom,
+    proficiency, 
+    perception,
+  });
+
+  return response.json(characters[lenght - 1]);
 });
 
 export { routes }
