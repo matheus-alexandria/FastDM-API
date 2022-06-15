@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { PrismaCharactersRepository } from '../repositories/implementations/PrismaCharactersRepository';
+import { GetPartyPassivePerceptionController } from '../useCases/GetPartyPassivePerception/GetPartyPassivePerceptionController';
 
 /**
  * Party
@@ -16,7 +17,9 @@ interface RequestData {
 
 const routes = Router();
 
-routes.get('/perception');
+const getPartyPassivePerceptionController = new GetPartyPassivePerceptionController();
+
+routes.get('/perception', getPartyPassivePerceptionController.handle);
 
 // Return all existing characters
 routes.get('/', (request: Request, response: Response) => {
