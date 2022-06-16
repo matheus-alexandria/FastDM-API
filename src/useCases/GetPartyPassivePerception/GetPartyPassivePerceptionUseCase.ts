@@ -16,6 +16,12 @@ class GetPartyPassivePerceptionUseCase {
         name: char.name,
       };
     });
+
+    if (reference) {
+      const greaters = passives.filter((passive) => passive.passive >= parseInt(String(reference)));
+  
+      return greaters;
+    }
   
     if (method === 'highest') {
       let max = -Infinity;
@@ -27,12 +33,6 @@ class GetPartyPassivePerceptionUseCase {
       const highers = passives.filter((p) => p.passive === max);
   
       return highers;
-    }
-  
-    if (method === 'above' && reference) {
-      const greaters = passives.filter((passive) => passive.passive >= parseInt(String(reference)));
-  
-      return greaters;
     }
 
     return passives;
