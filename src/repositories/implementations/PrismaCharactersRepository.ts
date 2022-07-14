@@ -1,4 +1,3 @@
-
 interface Character {
   name: string;
   wisdom: number;
@@ -33,7 +32,7 @@ class PrismaCharactersRepository {
       perception: true,
     },
   ];
-  
+
   all() {
     return this.characters;
   }

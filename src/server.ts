@@ -11,10 +11,10 @@ app.use('/', routes);
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
   return response.json({
-    message: err.message
+    message: err.message,
   });
 });
 
 app.listen(3333, () => {
-  console.log('TCC indo nos conformes LESGO')
+  console.log('TCC indo nos conformes LESGO');
 });
