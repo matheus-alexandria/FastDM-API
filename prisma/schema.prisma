@@ -20,3 +20,22 @@ model Character {
 
   @@map("characters")
 }
+
+model Player {
+  id             String   @id @default(uuid())
+  name           String
+  email          String
+  senha          String
+  dungeon_master Boolean
+  created_at     DateTime @default(now())
+
+  @@map("players")
+}
+
+model Class {
+  id       String @id @default(uuid())
+  name     String
+  hit_dice String
+
+  @@map("classes")
+}
