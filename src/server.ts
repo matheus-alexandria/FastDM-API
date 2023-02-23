@@ -16,5 +16,5 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
 });
 
 app.listen(3333, () => {
-  console.log('TCC indo nos conformes LESGO');
+  console.log('TCC esquecido... Vamo lá');
 });

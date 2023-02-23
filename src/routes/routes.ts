@@ -5,11 +5,11 @@ import { GetPartyPassivePerceptionController } from '../useCases/GetPartyPassive
 /**
  * Party
  * Character
- * 
+ *
  * Fazer as consultas baseadas em parties formadas, analisando os dados dos jogadores ligados as parties
  */
 
-type Method = 'highest' | 'above'
+type Method = 'highest' | 'above';
 
 interface RequestData {
   method: Method;
@@ -30,7 +30,6 @@ routes.get('/', (request: Request, response: Response) => {
   return response.json(characters);
 });
 
-
 // Creates a new character
 routes.post('/create', (request: Request, response: Response) => {
   const { name, wisdom, proficiency, perception } = request.body;
@@ -42,11 +41,11 @@ routes.post('/create', (request: Request, response: Response) => {
   const lenght = characters.push({
     name,
     wisdom,
-    proficiency, 
+    proficiency,
     perception,
   });
 
   return response.json(characters[lenght - 1]);
 });
 
-export { routes }
+export { routes };
